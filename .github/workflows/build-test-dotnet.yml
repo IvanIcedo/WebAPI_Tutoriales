@@ -15,7 +15,8 @@ jobs:
 
       - name: Instalando entorno de desarrollo .NET SDK
         uses: actions/setup-dotnet@v4
-        with:
+        with:      
+          global-json-file: global.json
           dotnet-version: '7.0.x'
           cache: true
           cache-dependency-path: '**/package-lock.json'
