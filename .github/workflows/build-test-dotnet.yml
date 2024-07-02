@@ -8,7 +8,7 @@ on:
     
 jobs:
   buildear-proyecto:
-    runs-on: ubuntu-lastest
+    runs-on: self-hosted
     steps:
       # Descargar el repositorio en el Runner
       - uses: actions/checkout@4
