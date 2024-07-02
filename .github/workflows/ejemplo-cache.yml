@@ -25,7 +25,7 @@ jobs:
       
       - name: Checar si el cache a buscar existe
         if: ${{ steps.archivo-cache.outputs.cache-hit != 'true' }}
-        run: echo "El archivo cacheado no existe, creando uno nuevo" && mkdir -p ~/carpetaCacheado && cat ./$NombreCache.txt > ~/carpetaCacheado/cacheo-$NombreCache.txt
+        run: echo "El archivo cacheado no existe, creando uno nuevo" && mkdir -p ~/carpetaCacheado && cat ./WebApi/$NombreCache.txt > ~/carpetaCacheado/cacheo-$NombreCache.txt
       
       - name: Mostrar contenido del archivo
         run: cat ~/carpetaCacheado/cacheo-$NombreCache.txt
