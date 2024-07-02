@@ -1,0 +1,34 @@
+name: Create Push Report
+
+# **What it does**: Crea un reporte de quien realizo el push
+# **Why we have it**: Para tener un registro de quien hace pushs al repositorio
+# **Who does it impact**: Facilitara tener un control de los cambios que intenta entrar al repositorio
+
+on: 
+    push: 
+        branches:
+            - 'GitActions_Test'
+    pull_request:
+        branches:
+            - 'main'
+
+jobs:
+  crear-registro-evento:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descarga el repositorio en el runner
+        uses: actions/checkout@v4
+
+      - name: Instalar Sshpass para acceder por SSH al servidor remoto
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+  
+      - name: Conectarse por SSH al servidor Linux
+        env:
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+            SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+            sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST "\
+              echo 'Agregando registro' \
+              && echo 'Un evento push fue lanzado por el usuario ${{ github.actor }} en el repositorio ${{ github.repository }} a las $(date '+%Y/%m/%d %H:%M:%S')' >> pushLog.txt \
+              && echo 'Logs actualizados'"

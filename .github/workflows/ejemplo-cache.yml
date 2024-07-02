@@ -1,0 +1,31 @@
+name: Ejemplo de Cacheo de un archivo
+
+on: push
+
+jobs:
+  recuperar-archivo-o-crear-nuevo:
+    runs-on: self-hosted
+    env:
+      NombreCache: miComidaFavorita
+    steps:
+      - name: Cargar el repositorio en el runner
+        uses: actions/checkout@v4
+        
+      - name: Cargar action cache
+        id: archivo-cache
+        uses: actions/cache@v4
+        env:
+          NombreArchivo: ${{ env.NombreCache }}.txt
+        with:
+          key: ${{ env.NombreCache }}-${{ runner.os }}-${{ hashFiles( env.NombreArchivo ) }}
+          path: ~/carpetaCacheado
+          restore-keys: |
+            ${{ env.NombreCache }}-${{ runner.os }}-
+            ${{ env.NombreCache }}-
+      
+      - name: Checar si el cache a buscar existe
+        if: ${{ steps.archivo-cache.outputs.cache-hit != 'true' }}
+        run: echo "El archivo cacheado no existe, creando uno nuevo" && mkdir -p ~/carpetaCacheado && cat ./$NombreCache.txt > ~/carpetaCacheado/cacheo-$NombreCache.txt
+      
+      - name: Mostrar contenido del archivo
+        run: cat ~/carpetaCacheado/cacheo-$NombreCache.txt

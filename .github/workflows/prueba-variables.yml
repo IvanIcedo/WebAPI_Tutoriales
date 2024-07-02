@@ -1,0 +1,15 @@
+name: Prueba de variables en GitHub Actions
+on:
+  workflow_dispatch
+env:
+  DIA_SEMANA: ${{ vars.DIA_SEMANA }}
+jobs:
+  Saludando_job:
+    runs-on: ubuntu-latest
+    env:
+      Saludo: ${{ vars.Saludo }}
+    steps:
+      - name: "Di, Hola Maria es Lunes"
+        run: echo "$Saludo $Nombre. Hoy es $DIA_SEMANA!"
+        env:
+           Nombre: ${{ secrets.Nombre }} 
