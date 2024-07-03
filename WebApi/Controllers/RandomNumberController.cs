@@ -37,10 +37,10 @@ namespace WebApi.Controllers
         [Route("dayOfWeek/{numberDay}")]
         public IActionResult GetDayOfWeekAccordingNumber(int numberDay)
         {
-            /*if (numberDay < 1)
+            if (numberDay < 1)
                 return BadRequest("El numero de dia debe ser mayor o igual a 1");
             if (numberDay > 7)
-                return BadRequest("El numero de dia debe ser igual o menos a 7"); */
+                return BadRequest("El numero de dia debe ser igual o menos a 7"); 
 
             return Ok($"El dia numero { numberDay } corresponde al dia { GetDayStrByNumber(numberDay) }");
         }
