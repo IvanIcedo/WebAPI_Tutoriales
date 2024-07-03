@@ -1,7 +1,7 @@
 -52,No valido
 0,No valido
 1,Lunes
-2,Martess
+2,Martes
 3,Miercoles
 4,Jueves
 5,Viernes
