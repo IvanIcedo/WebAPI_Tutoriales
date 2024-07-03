@@ -8,13 +8,13 @@ on:
     
 jobs:
   buildear-proyecto:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       # Descargar el repositorio en el Runner
       - uses: actions/checkout@v4
 
       - name: Instalando entorno de desarrollo .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:      
           dotnet-version: '7.0.x'
           cache: true
