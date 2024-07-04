@@ -51,7 +51,6 @@ jobs:
         with: 
           dotnet-version: 7.0.x
           cache: true
-          cache-dependency-path: '**/*.csproj'
       - name: Correr tests
         run: dotnet test ~/Testing
   
