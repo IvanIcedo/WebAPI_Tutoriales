@@ -50,8 +50,9 @@ jobs:
         uses: actions/setup-dotnet@v4
         with: 
           dotnet-version: 7.0.x
+      - run: cd ~/Testing
       - name: Correr tests
-        run: dotnet test ~/Testing
+        run: dotnet test
   
   deploying_a_produccion:
     runs-on: self-hosted
