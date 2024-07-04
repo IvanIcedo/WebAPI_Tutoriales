@@ -28,7 +28,7 @@ jobs:
       - name: Instalando dependencias de proyectos
         run: dotnet restore
       - name: Buildeando solucion
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Debug
       - name: Guardado builds generados
         uses: actions/upload-artifact@v4
         with:
