@@ -46,4 +46,5 @@ jobs:
   deploying_a_produccion:
     runs-on: self-hosted
     needs: testeando_api
-    
+    steps: 
+      - run: echo "Deploy a production"
