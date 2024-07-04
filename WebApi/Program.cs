@@ -24,7 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-app.UseDefaultFiles();
+app.UseDefaultFiles(); 
 app.UseStaticFiles();
 app.MapControllers();
 
