@@ -15,6 +15,10 @@ jobs:
       # Descargar repositorio en el runner
       - name: Descargando el repositorio en el runner
         uses: actions/checkout@v4
+      - name: Borrando artifact de build anterior
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: solucion-build
       - name: Instalando SDK .NET
         uses: actions/setup-dotnet@v4
         with: 
@@ -40,8 +44,8 @@ jobs:
         uses: actions/download-artifact@v4
         with: 
           name: solucion-build
-          path: ~/Testting
-      - run: ls -R ~/Testting
+          path: ~/Testing
+      - run: ls -R ~/Testing
   
   deploying_a_produccion:
     runs-on: self-hosted
@@ -49,12 +53,12 @@ jobs:
     steps: 
       - run: echo "Deploy a production"
       
-  post-limpieza-pipeline:
-    runs-on: ubuntu-latest
-    needs: deploying_a_produccion
-    if: always()
-    steps: 
-      - name: Borrando artifact de building de produccion
-        uses: geekyeggo/delete-artifact@v5
-        with:
-          name: solucion-build
+#  post-limpieza-pipeline:
+#    runs-on: ubuntu-latest
+#    needs: deploying_a_produccion
+#    if: always()
+#    steps: 
+#      - name: Borrando artifact de building de produccion
+#        uses: geekyeggo/delete-artifact@v5
+#        with:
+#          name: solucion-build
