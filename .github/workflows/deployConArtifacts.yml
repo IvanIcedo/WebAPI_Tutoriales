@@ -1,4 +1,4 @@
-name: Build, Test y Deploy usando Artifacts
+name: Build Test y Deploy usando Artifacts
 
 # Buildea completamente la solucion para generar los ejecutables que se usaran para el testing y el deploy en caso de que el testing pase
 
